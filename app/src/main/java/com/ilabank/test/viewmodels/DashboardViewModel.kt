@@ -20,10 +20,8 @@ class DashboardViewModel : BaseViewModel() {
     val selectedCarouselListData: LiveData<List<CarouselListData>> = _selectedCarouselListData
 
     init {
-        _carouselData.value = repository.generateCarouselData(
-            carouselCount = CAROUSEL_DATA_COUNT,
-            carouselItemCount = CAROUSEL_ITEM_DATA_COUNT
-        )
+        _carouselData.value =
+            repository.dynamicCarouselData(CAROUSEL_DATA_COUNT, CAROUSEL_ITEM_DATA_COUNT)
     }
 
     fun postDataToCarousel(carouselListData: List<CarouselListData>) {

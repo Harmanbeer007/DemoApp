@@ -4,52 +4,38 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.ilabank.test.databinding.ItemCarouselListingBinding
 import com.ilabank.test.model.bean.CarouselListData
+import com.ilabank.test.utils.CarouselListDataItemCallback
+import com.ilabank.test.utils.FilterData
 
 class DashboardRecyclerAdapter :
-    ListAdapter<CarouselListData,
-            DashboardRecyclerAdapter.HomeRecyclerViewHolder>(DiffCallback),
-    Filterable {
+    ListAdapter<CarouselListData, DashboardRecyclerAdapter.DashboardRecyclerViewHolder>(
+        CarouselListDataItemCallback()
+    ), Filterable {
 
-    var mainList = listOf<CarouselListData>()
+    var dataList = listOf<CarouselListData>()
 
-    companion object DiffCallback : DiffUtil.ItemCallback<CarouselListData>() {
-        override fun areItemsTheSame(
-            oldItem: CarouselListData,
-            newItem: CarouselListData
-        ): Boolean {
-            return oldItem.carouselDataId == newItem.carouselDataId
-        }
 
-        override fun areContentsTheSame(
-            oldItem: CarouselListData,
-            newItem: CarouselListData
-        ): Boolean {
-            return oldItem == newItem
-        }
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeRecyclerViewHolder {
-        return HomeRecyclerViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DashboardRecyclerViewHolder {
+        return DashboardRecyclerViewHolder(
             ItemCarouselListingBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
     }
 
-    override fun onBindViewHolder(holder: HomeRecyclerViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: DashboardRecyclerViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
 
 
     fun setOriginalList(data: List<CarouselListData>) {
-        mainList = data
+        dataList = data
         submitList(data)
     }
 
-    class HomeRecyclerViewHolder(private val mBinding: ItemCarouselListingBinding) :
+    class DashboardRecyclerViewHolder(private val mBinding: ItemCarouselListingBinding) :
         RecyclerView.ViewHolder(mBinding.root) {
         fun bind(carouselListItemData: CarouselListData) {
             mBinding.carouseListItemData = carouselListItemData
@@ -58,29 +44,9 @@ class DashboardRecyclerAdapter :
     }
 
     override fun getFilter(): Filter {
-        return object : Filter() {
-            override fun performFiltering(p0: CharSequence?): FilterResults {
-                var filteredList = mutableListOf<CarouselListData>()
-
-                if (p0.isNullOrEmpty()) {
-                    filteredList = mainList.toMutableList()
-                } else {
-                    for (i in mainList) {
-                        if (i.label.contains(p0, ignoreCase = true))
-                            filteredList.add(i)
-                    }
-                }
-                return FilterResults().apply { values = filteredList }
-            }
-
-            override fun publishResults(p0: CharSequence?, p1: FilterResults?) {
-                try {
-                    submitList(p1?.values as List<CarouselListData>)
-                } catch (e: Exception) {
-                    submitList(listOf())
-                }
-            }
-
+        return FilterData<CarouselListData>(dataList) {
+            submitList(it)
         }
     }
 }
+

@@ -3,8 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <Transition
+        app:constraintSetStart="@id/start"
         app:constraintSetEnd="@id/end"
-        app:constraintSetStart="@id/start">
+        app:duration="900"
+        app:motionInterpolator="easeOut">
         <OnSwipe
             app:dragDirection="dragUp"
             app:touchAnchorId="@+id/rv_carousel"
@@ -58,10 +60,11 @@
         <Constraint
             android:id="@+id/vp_carousel"
             android:layout_width="0dp"
-            android:layout_height="?attr/actionBarSize"
-            android:visibility="gone"
+            android:layout_height="0dp"
+            android:alpha="0"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            android:visibility="visible"
             app:layout_constraintTop_toTopOf="parent">
             <CustomAttribute
                 app:attributeName="imageAlpha"
@@ -72,9 +75,10 @@
             android:id="@+id/tl_bottom_dots"
             android:layout_width="wrap_content"
             android:layout_height="?attr/actionBarSize"
-            android:visibility="gone"
+            android:alpha="0"
             app:layout_constraintBottom_toBottomOf="@id/vp_carousel"
             app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="visible"
             app:layout_constraintStart_toStartOf="parent">
             <CustomAttribute
                 app:attributeName="imageAlpha"

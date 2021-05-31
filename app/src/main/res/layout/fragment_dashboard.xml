@@ -43,38 +43,32 @@
             android:background="@android:color/darker_gray"
             app:layout_constraintTop_toBottomOf="@id/tl_bottom_dots">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/input_search"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dp18"
-                android:background="@color/grey"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_search"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp18"
+                    android:background="@color/grey"
                     android:drawableEnd="@drawable/ic_action_search"
                     android:hint="@string/search"
+                    android:imeOptions="actionSearch"
                     android:inputType="textCapSentences|text"
-                    android:maxLength="40"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     android:maxLines="1"
-                    android:textColorHint="@color/grey"
                     android:textSize="@dimen/sp12" />
-            </com.google.android.material.textfield.TextInputLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.ilabank.test.view.custom.NonScrollableRecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_carousel"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:overScrollMode="never"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cl_main"

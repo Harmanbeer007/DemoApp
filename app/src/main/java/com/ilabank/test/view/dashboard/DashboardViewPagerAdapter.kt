@@ -11,7 +11,7 @@ import com.ilabank.test.model.bean.CarouselData
 
 class DashboardViewPagerAdapter : PagerAdapter() {
 
-    var imagesList: List<CarouselData> = arrayListOf() // list item to hold image array's
+    var imagesList: List<CarouselData> = arrayListOf()
 
     override fun isViewFromObject(view: View, Object: Any): Boolean {
         return view === Object as ConstraintLayout
@@ -32,7 +32,7 @@ class DashboardViewPagerAdapter : PagerAdapter() {
         container.removeView(Object as ConstraintLayout)
     }
 
-    /* Other functions */
+
     fun addItems(list: List<CarouselData>) {
         imagesList = list
         notifyDataSetChanged()

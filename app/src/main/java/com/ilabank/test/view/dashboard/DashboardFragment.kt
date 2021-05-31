@@ -27,9 +27,9 @@ class DashboardFragment : BaseFragment() {
     override fun onViewsInitialized(binding: ViewDataBinding, view: View) {
         mViewBinding = binding as FragmentDashboardBinding
         setUpListeners()
-        setUpRecyclerView()
         setUpObservers()
         setUpViewPager()
+        setUpRecyclerView()
     }
 
     override fun onResume() {

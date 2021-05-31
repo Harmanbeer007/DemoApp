@@ -8,15 +8,7 @@ class DashboardRepository {
 
     private val data = mutableListOf<CarouselData>()
 
-    /**
-     * Method to generate data for Carousels in HomePage
-     *
-     * @param carouselCount Defines the number of [CarouselData], default is 1
-     * @param carouselItemCount Defines the number of [CarouselListData] in a [CarouselData], default is 1
-     *
-     * @return Returns a list of Carousel Data after generating a list
-     */
-    fun generateCarouselData(
+    fun dynamicCarouselData(
         carouselCount: Int = 1,
         carouselItemCount: Int = 1
     ): List<CarouselData> {
@@ -26,17 +18,17 @@ class DashboardRepository {
             for (j in 1..carouselItemCount) {
                 temp.add(
                     CarouselListData(
-                        carouselId = i,
+                        id = i,
                         carouselDataId = j,
                         image = R.drawable.ic_action_trending,
-                        label = "Label $i.$j"
+                        label = "Label ${i.times(10).plus(j)}"
                     )
                 )
             }
             data.add(
                 CarouselData(
                     carouselId = i,
-                    carouselImage = R.drawable.dummy,
+                    carouselImage = R.mipmap.dummy,
                     data = temp
                 )
             )
