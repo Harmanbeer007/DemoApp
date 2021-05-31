@@ -4,8 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.ilabank.test.R
 import com.ilabank.test.databinding.ItemCarouselListingBinding
 import com.ilabank.test.model.bean.CarouselListData
 import com.ilabank.test.utils.CarouselListDataItemCallback
@@ -18,11 +20,14 @@ class DashboardRecyclerAdapter :
 
     var dataList = listOf<CarouselListData>()
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DashboardRecyclerViewHolder {
-        return DashboardRecyclerViewHolder(
-            ItemCarouselListingBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = DataBindingUtil.inflate<ItemCarouselListingBinding>(
+            LayoutInflater.from(parent.context),
+            R.layout.item_carousel_listing,
+            parent,
+            false
         )
+        return DashboardRecyclerViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: DashboardRecyclerViewHolder, position: Int) {

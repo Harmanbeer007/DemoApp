@@ -4,29 +4,35 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.databinding.DataBindingUtil
 import androidx.viewpager.widget.PagerAdapter
+import com.ilabank.test.R
 import com.ilabank.test.databinding.ItemCarouselBinding
 import com.ilabank.test.model.bean.CarouselData
 
 
 class DashboardViewPagerAdapter : PagerAdapter() {
 
-    var imagesList: List<CarouselData> = arrayListOf()
+    var dataList: List<CarouselData> = arrayListOf()
 
     override fun isViewFromObject(view: View, Object: Any): Boolean {
         return view === Object as ConstraintLayout
     }
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
-        val binding: ItemCarouselBinding =
-            ItemCarouselBinding.inflate(LayoutInflater.from(container.context), container, false)
+        val binding = DataBindingUtil.inflate<ItemCarouselBinding>(
+            LayoutInflater.from(container.context),
+            R.layout.item_carousel,
+            container,
+            false
+        )
 
-        binding.ivCarousalImage.setImageResource(imagesList[position].carouselImage)
+        binding.ivCarousalImage.setImageResource(dataList[position].carouselImage)
         container.addView(binding.root)
         return binding.root
     }
 
-    override fun getCount(): Int = imagesList.size
+    override fun getCount(): Int = dataList.size
 
     override fun destroyItem(container: ViewGroup, position: Int, Object: Any) {
         container.removeView(Object as ConstraintLayout)
@@ -34,7 +40,7 @@ class DashboardViewPagerAdapter : PagerAdapter() {
 
 
     fun addItems(list: List<CarouselData>) {
-        imagesList = list
+        dataList = list
         notifyDataSetChanged()
     }
 }

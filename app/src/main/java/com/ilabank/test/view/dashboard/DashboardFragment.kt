@@ -1,6 +1,8 @@
 package com.ilabank.test.view.dashboard
 
 import android.view.View
+import android.view.inputmethod.EditorInfo
+import android.widget.TextView.OnEditorActionListener
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -8,9 +10,11 @@ import androidx.viewpager.widget.ViewPager
 import com.ilabank.test.R
 import com.ilabank.test.databinding.FragmentDashboardBinding
 import com.ilabank.test.utils.TextAfterChange
+import com.ilabank.test.utils.hideKeyboard
 import com.ilabank.test.view.base.BaseFragment
 import com.ilabank.test.view.main.MainActivity
 import com.ilabank.test.viewmodels.DashboardViewModel
+
 
 class DashboardFragment : BaseFragment() {
 
@@ -82,7 +86,17 @@ class DashboardFragment : BaseFragment() {
         mViewBinding.etSearch.addTextChangedListener(TextAfterChange {
             dashboardRecyclerAdapter.filter.filter(it)
         })
-
+        mViewBinding.etSearch.setOnClickListener {
+            mViewBinding.rootMotionLayout.transitionToEnd()
+            mViewBinding.rootMotionLayout.requestFocus()
+        }
+        mViewBinding.etSearch.setOnEditorActionListener(OnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                mViewBinding.etSearch.hideKeyboard()
+                return@OnEditorActionListener true
+            }
+            false
+        })
         mViewBinding.etSearch.setOnFocusChangeListener { v, hasFocus ->
             run {
                 if (hasFocus) {
