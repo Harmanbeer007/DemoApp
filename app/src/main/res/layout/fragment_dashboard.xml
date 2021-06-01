@@ -44,24 +44,23 @@
             app:layout_constraintTop_toBottomOf="@id/tl_bottom_dots">
 
 
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_search"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dp18"
-                    android:background="@color/grey"
-                    android:drawableEnd="@drawable/ic_action_search"
-                    android:hint="@string/search"
-                    android:imeOptions="actionSearch"
-                    android:inputType="textCapSentences|text"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:maxLines="1"
-                    android:textSize="@dimen/sp12" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_search"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp18"
+                android:background="@color/grey"
+                android:drawableEnd="@drawable/ic_action_search"
+                android:hint="@string/search"
+                android:imeOptions="actionSearch"
+                android:inputType="textCapSentences|text"
+                android:maxLines="1"
+                android:textSize="@dimen/sp12"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -73,6 +72,23 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cl_main"
             tools:listitem="@layout/item_carousel_listing" />
+
+
+        <TextView
+            android:id="@+id/empty_view"
+            style="@style/TextAppearance.AppCompat.Subhead"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp20"
+            android:background="@color/white"
+            android:gravity="center"
+            android:padding="@dimen/dp20"
+            android:text="@string/sorry_there_is_no_result_found_for_this_search_nplease_try_another_phrase"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cl_main" />
 
     </androidx.constraintlayout.motion.widget.MotionLayout>
 

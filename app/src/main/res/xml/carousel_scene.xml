@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <Transition
-        app:constraintSetStart="@id/start"
         app:constraintSetEnd="@id/end"
+        app:constraintSetStart="@id/start"
         app:duration="900"
         app:motionInterpolator="easeOut">
         <OnSwipe
@@ -22,9 +22,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-            <CustomAttribute
-                app:attributeName="imageAlpha"
-                app:customIntegerValue="0" />
+
         </Constraint>
 
         <Constraint
@@ -36,11 +34,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:tabGravity="center"
-            app:tabIndicatorHeight="0dp">
-            <CustomAttribute
-                app:attributeName="imageAlpha"
-                app:customIntegerValue="0" />
-        </Constraint>
+            app:tabIndicatorHeight="0dp" />
 
         <Constraint
             android:id="@+id/cl_main"
@@ -52,6 +46,14 @@
                 app:attributeName="backgroundColor"
                 app:customColorValue="@android:color/darker_gray" />
         </Constraint>
+        <Constraint
+            android:id="@+id/empty_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cl_main"
+            app:visibilityMode="ignore" />
 
     </ConstraintSet>
 
@@ -62,28 +64,20 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:alpha="0"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:visibility="visible"
-            app:layout_constraintTop_toTopOf="parent">
-            <CustomAttribute
-                app:attributeName="imageAlpha"
-                app:customIntegerValue="0" />
-        </Constraint>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Constraint
             android:id="@+id/tl_bottom_dots"
             android:layout_width="wrap_content"
             android:layout_height="?attr/actionBarSize"
             android:alpha="0"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="@id/vp_carousel"
             app:layout_constraintEnd_toEndOf="parent"
-            android:visibility="visible"
-            app:layout_constraintStart_toStartOf="parent">
-            <CustomAttribute
-                app:attributeName="imageAlpha"
-                app:customIntegerValue="0" />
-        </Constraint>
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Constraint
             android:id="@+id/cl_main"
@@ -97,6 +91,13 @@
                 app:attributeName="backgroundColor"
                 app:customColorValue="@color/purple_700" />
         </Constraint>
-
+        <Constraint
+            android:id="@+id/empty_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cl_main"
+            app:visibilityMode="ignore" />
     </ConstraintSet>
 </MotionScene>

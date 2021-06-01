@@ -10,7 +10,9 @@ import androidx.viewpager.widget.ViewPager
 import com.ilabank.test.R
 import com.ilabank.test.databinding.FragmentDashboardBinding
 import com.ilabank.test.utils.TextAfterChange
+import com.ilabank.test.utils.gone
 import com.ilabank.test.utils.hideKeyboard
+import com.ilabank.test.utils.visible
 import com.ilabank.test.view.base.BaseFragment
 import com.ilabank.test.view.main.MainActivity
 import com.ilabank.test.viewmodels.DashboardViewModel
@@ -51,7 +53,13 @@ class DashboardFragment : BaseFragment() {
 
     private fun setUpRecyclerView() {
         mViewModel.postDataToCarousel(mViewModel.getDataWithRespectToPosition(0))
-        dashboardRecyclerAdapter = DashboardRecyclerAdapter()
+        dashboardRecyclerAdapter = DashboardRecyclerAdapter {
+            if (it) {
+                mViewBinding.emptyView.visible()
+            } else {
+                mViewBinding.emptyView.gone()
+            }
+        }
         mViewBinding.rvCarousel.run {
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
             adapter = dashboardRecyclerAdapter
@@ -104,6 +112,7 @@ class DashboardFragment : BaseFragment() {
                 }
             }
         }
+
 
     }
 

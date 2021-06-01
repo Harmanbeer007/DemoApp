@@ -21,7 +21,7 @@ class DashboardRepository {
                         id = i,
                         carouselDataId = j,
                         image = R.drawable.ic_action_trending,
-                        label = "Label ${i.times(10).plus(j)}"
+                        label = "Techstack ${i.times(10).plus(j)}"
                     )
                 )
             }

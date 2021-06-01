@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">ILaBank</string>
     <string name="search">Search</string>
+    <string name="no_result">No Result</string>
+    <string name="sorry_there_is_no_result_found_for_this_search_nplease_try_another_phrase">Sorry,there is no result found for this search,\nPlease try another phrase.</string>
 </resources>

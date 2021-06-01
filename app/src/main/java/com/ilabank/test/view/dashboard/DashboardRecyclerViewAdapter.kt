@@ -13,10 +13,11 @@ import com.ilabank.test.model.bean.CarouselListData
 import com.ilabank.test.utils.CarouselListDataItemCallback
 import com.ilabank.test.utils.FilterData
 
-class DashboardRecyclerAdapter :
+class DashboardRecyclerAdapter(val showEmptyView: (Boolean) -> Unit) :
     ListAdapter<CarouselListData, DashboardRecyclerAdapter.DashboardRecyclerViewHolder>(
         CarouselListDataItemCallback()
-    ), Filterable {
+    ),
+    Filterable {
 
     var dataList = listOf<CarouselListData>()
 
@@ -51,6 +52,7 @@ class DashboardRecyclerAdapter :
     override fun getFilter(): Filter {
         return FilterData<CarouselListData>(dataList) {
             submitList(it)
+            showEmptyView(it.isNullOrEmpty())
         }
     }
 }
